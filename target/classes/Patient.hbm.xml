@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.cuatrovientos.larris.examenManyToMany.models">
+
+	<class name="Patient" table="PATIENT">
+		<id name="idPatient" column="PATIENTID">
+			<generator class="identity" />
+		</id>
+		<property name="name" column="NAME" />
+		<property name="sex" column="SEX" />
+		
+		<list name="doctors" table="doctors_patients"  inverse="true" lazy="false">
+			<key column="patient_id" />
+			<list-index column="list_order" />
+			<many-to-many class="Doctor" column="doctor_id" />
+		</list>
+		
+	</class>
+
+</hibernate-mapping> 
